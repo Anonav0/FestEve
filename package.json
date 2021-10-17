@@ -1,0 +1,25 @@
+{
+  "name": "festeve",
+  "version": "1.0.0",
+  "description": "Site to showcase the different festivals in India.",
+  "main": "app.js",
+  "scripts": {
+    "run": "npx nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anonav0/FestEve.git"
+  },
+  "author": "Swarnavo K",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Anonav0/FestEve/issues"
+  },
+  "homepage": "https://github.com/Anonav0/FestEve#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.13"
+  }
+}
