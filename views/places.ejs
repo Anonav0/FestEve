@@ -1,17 +1,43 @@
 <%- include('./partials/header') -%> 
 
-<h1>This is the places page!</h1>
 
-<a href="/places/new">Add new Puja</a>
+<div class="container">
+    <header class="jumbotron">
 
-<% places.forEach((place) => { %>
-    <div>
-        <h4><%= place.name %></h4>
-        <img src="<%= place.image %> ">
-    </div>
+        <div class="container">
+            <h1>Welcome To FestEve!</h1>
+            <p>View Our hand picked pujas from all over India</p>
+    
+            <p>
+                <a class="btn btn-primary" href="/places/new">Add new Puja</a>
+            </p>
+        </div>
         
+    </header>
+    
+
+    <div class="row text-center" style="display: flex; flex-wrap: wrap;">
+
+        <% places.forEach((place) => { %>
+            <div class="col-md-3 col-sm-6" >
+                <div class="card md-3 sm-6 box-shadow">
+                    <div class="card-img-top">
+                        <img src="<%= place.image %>" style="max-width:100%; max-height: 100%; display: block;">
+                    </div>
+
+                    <div class="card-body">
+                        <h4 class="card-title"><%= place.name  %> </h4>
+                    </div>
+                </div>
+            </div>
+                
+        <% }); %>
+    </div>
+    
+    
+
+</div>
 
 
-<% }); %>
 
 <%- include('./partials/footer') -%> 

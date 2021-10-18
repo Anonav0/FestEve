@@ -10,6 +10,9 @@ app.set("view engine", "ejs");
 const places = [
     {name: 'Shreebhumi', image: 'https://www.indianfestivaldiary.com/durgapuja/sreebhumi_sporting_club/2019/sreebhumi_sporting_club.jpg'},
     {name: 'TalaPark', image: 'https://1.bp.blogspot.com/-cRhBTrlrqMQ/XZlsjHfVeQI/AAAAAAAAKLM/QzzWgFe-uR0-HeeKyuy_QaLI6Ve-xkMjACLcBGAsYHQ/s1600/71518039_2686121451452480_1784166119548911616_o.jpg'},
+    {name: 'Chetla Sharbojonin', image: 'https://www.amarpujo.com/wp-content/uploads/2016/10/ca-1800x900.jpg'},
+    {name: 'Shreebhumi', image: 'https://www.indianfestivaldiary.com/durgapuja/sreebhumi_sporting_club/2019/sreebhumi_sporting_club.jpg'},
+    {name: 'TalaPark', image: 'https://1.bp.blogspot.com/-cRhBTrlrqMQ/XZlsjHfVeQI/AAAAAAAAKLM/QzzWgFe-uR0-HeeKyuy_QaLI6Ve-xkMjACLcBGAsYHQ/s1600/71518039_2686121451452480_1784166119548911616_o.jpg'},
     {name: 'Chetla Sharbojonin', image: 'https://www.amarpujo.com/wp-content/uploads/2016/10/ca-1800x900.jpg'}
 
 ]
