@@ -1,12 +1,27 @@
 <%- include('partials/header')  -%> 
 
-<h1>Create a new Puja Pandal</h1>
+<div class="container">
+    <h1 style="text-align: center;">Create a new Puja Pandal</h1>
 
-<form action="/places" method="POST">
-    <input type="text" name="name" placeholder="name">
-    <input type="text" name="image" placeholder="image url">
-    <button>Submit!</button>
-</form>
+    <div style="width: 30%; margin: 25px auto;">
+        <form action="/places" method="POST">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input class="form-control" type="text" name="name" placeholder="name">
+                <small id="nameHelp" class="form-text text-muted">This is really very important.</small>
+            </div>
+            <div class="form-group">
+                <label for="image">Image url</label>
+                <input class="form-control" type="text" name="image" placeholder="image url">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Submit!</button>
+        </form>  
+        <a href="/places">Back</a> 
+    </div>
+    
 
-<a href="/places">Back</a>
+
+</div>
+
+
 <%- include('partials/footer')  -%> 
