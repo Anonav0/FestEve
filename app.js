@@ -60,7 +60,8 @@ app.post('/pujas', (req,res) => {
     //get data from form and add to places array
     const name = req.body.name;
     const image = req.body.image;
-    const newPuja = {name: name, image : image};
+    const desc = req.body.description;
+    const newPuja = {name: name, image : image, description : desc };
     //Create a new Puja and save to DB
     Puja.create(newPuja, (err, Newpuja) =>  {
         if(err) {
@@ -83,7 +84,15 @@ app.get('/pujas/new', (req, res) => {
 app.get("/pujas/:id", (req,res)=> {
 
     //find the puja with provided Id and show to puja.
-    res.render('show');
+    Puja.findById(req.params.id, (err,foundPuja)=> {
+        if(err) {
+            console.log(err);
+        } else {
+            res.render("show", {puja: foundPuja});
+        }
+
+    });
+
 });
 
 
