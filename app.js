@@ -5,6 +5,7 @@ const port       = process.env.PORT || 8080;
 
 //Integrating mongoDB
 const mongoose   = require("mongoose");
+const Puja       = require("./models/puja");
 
 
 
@@ -13,14 +14,7 @@ mongoose.connect("mongodb://localhost/FestEve");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 
-//SCHEMA SETUP
-const pujaSchema = new mongoose.Schema({
-    name: String,
-    image: String,
-    description: String
-});
 
-const Puja = mongoose.model("Puja", pujaSchema);
 
 // Puja.create({
 //     name: "Tala Park Sharbojonin",
@@ -100,4 +94,4 @@ app.get("/pujas/:id", (req,res)=> {
 
 app.listen(port, () => {
     console.log('FestEve Server started.')
-})
+});
