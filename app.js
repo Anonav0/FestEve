@@ -2,6 +2,9 @@ const express    = require("express");
 const app        = express();
 const bodyParser = require("body-parser");
 const port       = process.env.PORT || 8080;
+const seedDB     = require("./seeds");
+
+seedDB();
 
 //Integrating mongoDB
 const mongoose   = require("mongoose");
@@ -15,19 +18,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 
 
-
-// Puja.create({
-//     name: "Tala Park Sharbojonin",
-//     image: "https://1.bp.blogspot.com/-cRhBTrlrqMQ/XZlsjHfVeQI/AAAAAAAAKLM/QzzWgFe-uR0-HeeKyuy_QaLI6Ve-xkMjACLcBGAsYHQ/s1600/71518039_2686121451452480_1784166119548911616_o.jpg",
-//     description: "DARUN PUJA TA! KINTU ONEK BHIR"
-// }, (err, puja)=> {
-//     if(err) {
-//         console.log(err);
-//     }else {
-//         console.log('NEWLY CREATED PUJA ENTRY');
-//         console.log(puja);
-//     }
-// });
 
 
 //INDEX ROUTE - shows all the puja entries
@@ -78,10 +68,11 @@ app.get('/pujas/new', (req, res) => {
 app.get("/pujas/:id", (req,res)=> {
 
     //find the puja with provided Id and show to puja.
-    Puja.findById(req.params.id, (err,foundPuja)=> {
+    Puja.findById(req.params.id).populate("comments").exec((err,foundPuja)=> {
         if(err) {
             console.log(err);
         } else {
+            console.log(foundPuja);
             res.render("show", {puja: foundPuja});
         }
 

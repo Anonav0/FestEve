@@ -1,12 +1,21 @@
 <%- include('partials/header')  -%> 
 
-<h1>this is a show template</h1>
+<!-- <h1>this is a show template</h1> -->
 
 <p><%= puja.name  %> </p>
 
-<img src="<%= puja.image  %> "
+<img src="<%= puja.image  %> ">
 
-<p><%= puja.description  %> </p>
+<p> <%= puja.description %> </p>
+
+<% puja.comments.forEach((comment)=> { %> 
+    <p>
+        <strong><%= comment.author %></strong> - <%= comment.text %>
+         
+     </p> 
+ <% }); %>     
+ 
+
 
 
 <%- include('partials/footer')  -%>  
