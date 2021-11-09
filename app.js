@@ -9,6 +9,7 @@ seedDB();
 //Integrating mongoDB
 const mongoose   = require("mongoose");
 const Puja       = require("./models/puja");
+const Comment = require("./models/comment");
 
 
 
@@ -96,6 +97,29 @@ app.get("/pujas/:id/comments/new", (req, res)=> {
     })
 
 });
+
+app.post("/pujas/:id/comments", (req, res) => {
+    //lookup pujas using ID
+    Puja.findById(req.params.id, (err, puja)=> {
+        if(err) {
+            console.log(err);
+            res.redirect("/pujas")
+        } else {
+            Comment.create(req.body.comment, (err, comment)=>{
+                if(err) {
+                    console.log(err);
+                } else {
+                    puja.comments.push(comment);
+                    puja.save();
+                    res.redirect("/pujas/" + puja._id);
+                }
+            });
+        }
+    });
+    //create new comment
+    //connect new comment to puja
+    //redirect puja show page
+})
 
 
 

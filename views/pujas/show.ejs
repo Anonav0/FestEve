@@ -8,6 +8,10 @@
 
 <p> <%= puja.description %> </p>
 
+<p>
+    <a class="btn btn-success" href="/pujas/<%= puja._id %>/comments/new ">Add new Comment</a>
+</p>
+
 <% puja.comments.forEach((comment)=> { %> 
     <p>
         <strong><%= comment.author %></strong> - <%= comment.text %>

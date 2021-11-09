@@ -4,7 +4,7 @@
     <h1 style="text-align: center;">Add a new comment to <%= puja.name %>  </h1>
 
     <div style="width: 30%; margin: 25px auto;">
-        <form action="/pujas/ <%= puja._id %> " method="POST">
+        <form action="/pujas/<%= puja._id %>/comments" method="POST">
             <div class="form-group">
                 <label for="text">Text</label>
                 <input class="form-control" type="text" name="comment[text]" placeholder="text">
