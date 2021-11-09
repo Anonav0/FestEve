@@ -31,7 +31,7 @@ app.get('/pujas', (req, res) => {
         if(err){
             console.log(err);
         } else {
-            res.render('index', {pujas: allPujas});
+            res.render('pujas/index', {pujas: allPujas});
         }
     })
    
@@ -61,7 +61,7 @@ app.post('/pujas', (req,res) => {
 
 //NEW - show form to create new puja entry
 app.get('/pujas/new', (req, res) => {
-    res.render('new.ejs');
+    res.render('pujas/new');
 });
 
 //SHOW - show more info about one Puja entry
@@ -73,10 +73,27 @@ app.get("/pujas/:id", (req,res)=> {
             console.log(err);
         } else {
             console.log(foundPuja);
-            res.render("show", {puja: foundPuja});
+            res.render("pujas/show", {puja: foundPuja});
         }
 
     });
+
+});
+
+
+// ============================
+//COMMENTS ROUTES
+// ============================
+
+app.get("/pujas/:id/comments/new", (req, res)=> {
+    //find puja by id
+    Puja.findById(req.params.id, (err, puja)=> {
+        if(err) {
+            console.log(err);
+        } else {
+            res.render("comments/new", {puja: puja})
+        }
+    })
 
 });
 
