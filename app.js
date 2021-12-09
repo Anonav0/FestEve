@@ -9,7 +9,7 @@ seedDB();
 //Integrating mongoDB
 const mongoose   = require("mongoose");
 const Puja       = require("./models/puja");
-const Comment = require("./models/comment");
+const Comment    = require("./models/comment");
 
 
 
@@ -17,6 +17,8 @@ const Comment = require("./models/comment");
 mongoose.connect("mongodb://localhost/FestEve");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
+app.use(express.static(__dirname + "/public"));
+
 
 
 
