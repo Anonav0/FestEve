@@ -164,6 +164,19 @@ app.post("/register", (req, res)=> {
     });
 });
 
+//login route
+//show login form
+app.get("/login", (req, res)=> {
+    res.render("login");
+});
+
+//handle login logic
+//middleware used here
+app.post("/login", passport.authenticate("local", {
+    successRedirect : "/pujas",
+    failureRedirect: "/login"
+}), (req, res)=> {});
+
 
 
 
