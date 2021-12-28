@@ -4,12 +4,19 @@ const bodyParser = require("body-parser");
 const port       = process.env.PORT || 8080;
 const seedDB     = require("./seeds");
 
+//Authentication imports
+const passport          = require("passport");
+const LocalStrategy     = require("passport-local"); 
 seedDB();
+
+
 
 //Integrating mongoDB
 const mongoose   = require("mongoose");
 const Puja       = require("./models/puja");
 const Comment    = require("./models/comment");
+// User model
+const User       = require("./models/user");
 
 
 
