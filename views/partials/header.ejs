@@ -17,15 +17,24 @@
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/pujas">Home</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/register">Sign up</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link " href="/login">Sign in</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link " href="/logout">Sign out</a>
-                  </li>
+
+                  <% if(!currentUser) { %>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/register">Sign up</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link " href="/login">Sign in</a>
+                    </li>
+                  <% } else { %>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/">Signed in as <%= currentUser.username %> </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link " href="/logout">Sign out</a>
+                    </li>
+                 <% } %> 
+
+
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown03">

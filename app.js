@@ -40,6 +40,12 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
+//middleware for accessing current User to all routes
+app.use((req, res, next)=> {
+    res.locals.currentUser = req.user;
+    next();
+});
+
 
 //INDEX ROUTE - shows all the puja entries
 app.get('/', (req, res) => {
