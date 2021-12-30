@@ -30,8 +30,14 @@ router.post("/",isLoggedIn, (req, res) => {
                 if(err) {
                     console.log(err);
                 } else {
+                    //add username and id to comment
+                    comment.author.id = req.user._id;
+                    comment.author.username = req.user.username;
+                    //save comment
+                    comment.save();
                     puja.comments.push(comment);
                     puja.save();
+                    console.log(comment);
                     res.redirect("/pujas/" + puja._id);
                 }
             });

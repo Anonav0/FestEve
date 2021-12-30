@@ -7,7 +7,9 @@ const seedDB     = require("./seeds");
 //Authentication imports
 const passport          = require("passport");
 const LocalStrategy     = require("passport-local"); 
-seedDB();
+
+//seed the database
+// seedDB();
 
 
 
