@@ -89,7 +89,18 @@ router.put("/:id", (req,res)=> {
         }
     })
     //redirect
-})
+});
+
+//DESTORY PUJA ROUTE  
+router.delete("/:id", (req,res)=> {
+    Puja.findByIdAndRemove(req.params.id, (err)=> {
+        if(err) {
+            res.redirect("/pujas");
+        } else {
+            res.redirect("/pujas");
+        }
+    })
+});
 
 //middleware
 function isLoggedIn(req, res, next) {
