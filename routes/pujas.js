@@ -66,6 +66,31 @@ router.get("/:id", (req,res)=> {
 
 });
 
+//EDIT PUJA ROUTE
+router.get("/:id/edit", (req, res)=> {
+    Puja.findById(req.params.id, (err, foundPuja)=> {
+        if(err) {
+            res.redirect("/pujas");
+        }else {
+            res.render("pujas/edit", {puja : foundPuja});
+        }
+    });
+    
+});
+
+//UPDATE PUJA ROUTE
+router.put("/:id", (req,res)=> {
+    //find and update the correct puja
+    Puja.findByIdAndUpdate(req.params.id, req.body.puja, (err, updatedPuja) => {
+        if(err) {
+            res.redirect("/pujas");
+        } else {
+            res.redirect("/pujas/"+ req.params.id);
+        }
+    })
+    //redirect
+})
+
 //middleware
 function isLoggedIn(req, res, next) {
     if(req.isAuthenticated()) {

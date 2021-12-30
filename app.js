@@ -1,8 +1,9 @@
-const express    = require("express");
-const app        = express();
-const bodyParser = require("body-parser");
-const port       = process.env.PORT || 8080;
-const seedDB     = require("./seeds");
+const express           = require("express");
+const app               = express();
+const bodyParser        = require("body-parser");
+const port              = process.env.PORT || 8080;
+const methodOverride    = require("method-override");
+const seedDB            = require("./seeds");
 
 //Authentication imports
 const passport          = require("passport");
@@ -25,12 +26,14 @@ const User       = require("./models/user");
 const commentRoutes = require("./routes/comments");
 const pujasRoutes   = require("./routes/pujas");
 const indexRoutes    = require("./routes/index");
+const req = require("express/lib/request");
 
 
 mongoose.connect("mongodb://localhost/FestEve");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
+app.use(methodOverride("_method"));
 
 //PASSPORT CONFIGURATION
 app.use(require("express-session")({
