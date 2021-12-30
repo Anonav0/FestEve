@@ -4,7 +4,14 @@ const mongoose = require('mongoose');
 const pujaSchema = new mongoose.Schema({
     name: String,
     image: String,
-    description: String, 
+    description: String,
+    author : {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        },
+        username: String
+    },
     comments : [
         {
             type: mongoose.Schema.Types.ObjectId,

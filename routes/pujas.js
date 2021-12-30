@@ -19,20 +19,25 @@ router.get('/', (req, res) => {
 });
 
 //CREATE ROUTE - to create a new puja entry
-router.post('/', (req,res) => {
+router.post('/',isLoggedIn, (req,res) => {
     // res.send('YOU HIT THE POST ROUTE');
 
     //get data from form and add to places array
     const name = req.body.name;
     const image = req.body.image;
     const desc = req.body.description;
-    const newPuja = {name: name, image : image, description : desc };
+    const author = {
+        id: req.user._id,
+        username: req.user.username
+    }
+    const newPuja = {name: name, image : image, description : desc , author: author};
     //Create a new Puja and save to DB
     Puja.create(newPuja, (err, Newpuja) =>  {
         if(err) {
             console.log(err);
         } else {
             //redirect back to places page
+            console.log(Newpuja)
             res.redirect('/pujas');
         }
     })
@@ -41,7 +46,7 @@ router.post('/', (req,res) => {
 });
 
 //NEW - show form to create new puja entry
-router.get('/new', (req, res) => {
+router.get('/new',isLoggedIn, (req, res) => {
     res.render('pujas/new');
 });
 
@@ -60,5 +65,13 @@ router.get("/:id", (req,res)=> {
     });
 
 });
+
+//middleware
+function isLoggedIn(req, res, next) {
+    if(req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect("/login");
+}
 
 module.exports = router;
