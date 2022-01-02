@@ -89,7 +89,7 @@ router.put("/:id", (req,res)=> {
 });
 
 //DESTORY PUJA ROUTE  
-router.delete("/:id", (req,res)=> {
+router.delete("/:id",checkPujaOwnership, (req,res)=> {
     Puja.findByIdAndRemove(req.params.id, (err)=> {
         if(err) {
             res.redirect("/pujas");

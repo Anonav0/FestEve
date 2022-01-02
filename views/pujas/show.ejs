@@ -12,11 +12,12 @@
                     <p class="opacity-50 card-text">
                        <em>Submitted by : <%= puja.author.username %> </em> 
                     </p>
-
-                    <a href="/pujas/<%= puja._id %>/edit" class="btn btn-warning">Edit</a>
-                    <form id="delete-form" action="/pujas/<%= puja._id %>?_method=DELETE" method="POST">
-                        <button class="btn btn-danger">Delete</button>
-                    </form>
+                    <% if(currentUser && puja.author.id.equals(currentUser._id)){ %> 
+                        <a href="/pujas/<%= puja._id %>/edit" class="btn btn-warning">Edit</a>
+                        <form id="delete-form" action="/pujas/<%= puja._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    <% } %> 
                 </div>
             </div>
 
