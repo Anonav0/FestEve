@@ -67,15 +67,12 @@ router.get("/:id", (req,res)=> {
 });
 
 //EDIT PUJA ROUTE
-router.get("/:id/edit", (req, res)=> {
+router.get("/:id/edit",checkPujaOwnership, (req, res)=> {
+
     Puja.findById(req.params.id, (err, foundPuja)=> {
-        if(err) {
-            res.redirect("/pujas");
-        }else {
-            res.render("pujas/edit", {puja : foundPuja});
-        }
+        res.render("pujas/edit", {puja : foundPuja});
     });
-    
+
 });
 
 //UPDATE PUJA ROUTE
@@ -109,5 +106,28 @@ function isLoggedIn(req, res, next) {
     }
     res.redirect("/login");
 }
+
+function checkPujaOwnership(req,res, next) {
+
+    //if user is logged in
+    if(req.isAuthenticated()) {
+        
+        Puja.findById(req.params.id, (err, foundPuja)=> {
+            if(err) {
+                res.redirect("back");
+            }else {
+                //does the user own the puja entry?
+                 if(foundPuja.author.id.equals(req.user._id)) {
+                    next();
+                 } else {
+                     res.redirect("back");
+                 }
+                
+            }
+        });
+    } else {
+        res.redirect("back");
+    }
+};
 
 module.exports = router;
