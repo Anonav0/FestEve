@@ -1,0 +1,23 @@
+<%- include('../partials/header')  -%> 
+
+<div class="container">
+    <h1 style="text-align: center;">Edit <%= puja_id.name %>  </h1>
+
+    <div style="width: 30%; margin: 25px auto;">
+        <form action="/pujas/<%= puja_id %>/comments/<%= comment._id %>?_method=PUT" method="POST">
+            <div class="form-group">
+                <label for="text">Text</label>
+                <input class="form-control" type="text" name="comment[text]" value="<%= comment.text %>">
+                <small id="nameHelp" class="form-text text-muted">This is really very important.</small>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Submit!</button>
+        </form>  
+        <a href="/pujas">Back</a> 
+    </div>
+    
+
+
+</div>
+
+
+<%- include('../partials/footer')  -%> 
