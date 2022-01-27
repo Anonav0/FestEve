@@ -62,7 +62,11 @@
                 <%= success %>
               </div>
             <% } %> 
-            
+            <% if(primary && primary.length > 0){ %>
+              <div class="alert alert-primary" role="alert">
+                <%= success %>
+              </div>
+            <% } %> 
           </div>
           
           

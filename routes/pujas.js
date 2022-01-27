@@ -72,19 +72,22 @@ router.get("/:id", (req,res)=> {
 router.get("/:id/edit",middleware.checkPujaOwnership, (req, res)=> {
 
     Puja.findById(req.params.id, (err, foundPuja)=> {
+
         res.render("pujas/edit", {puja : foundPuja});
     });
 
 });
 
 //UPDATE PUJA ROUTE
-router.put("/:id", (req,res)=> {
+router.put("/:id", middleware.checkPujaOwnership, (req,res)=> {
     //find and update the correct puja
     Puja.findByIdAndUpdate(req.params.id, req.body.puja, (err, updatedPuja) => {
         if(err) {
             res.redirect("/pujas");
         } else {
+            
             res.redirect("/pujas/"+ req.params.id);
+           
         }
     })
     //redirect

@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 const passport = require("passport");
+const user = require("../models/user");
 const User = require("../models/user");
 
 
@@ -22,10 +23,11 @@ router.post("/register", (req, res)=> {
     const newUser = new User({username: req.body.username});
     User.register(newUser, req.body.password, (err, usr)=> {
         if(err) {
-            console.log(err);
-            return res.render("register");
+            req.flash("error", err.message);
+            return res.redirect("/register");
         }
         passport.authenticate("local")(req, res, ()=> {
+            req.flash("success", "Welcome to FestEve! "+ newUser.username);
             res.redirect("/pujas");
         });
     });
