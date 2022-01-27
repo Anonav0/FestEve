@@ -4,6 +4,8 @@ const router = express.Router();
 
 const Puja = require("../models/puja");
 
+const middleware = require("../middleware/index")
+
 
 //INDEX ROUTE - shows all the puja entries
 router.get('/', (req, res) => {
@@ -19,7 +21,7 @@ router.get('/', (req, res) => {
 });
 
 //CREATE ROUTE - to create a new puja entry
-router.post('/',isLoggedIn, (req,res) => {
+router.post('/', middleware.isLoggedIn, (req,res) => {
     // res.send('YOU HIT THE POST ROUTE');
 
     //get data from form and add to places array
@@ -46,7 +48,7 @@ router.post('/',isLoggedIn, (req,res) => {
 });
 
 //NEW - show form to create new puja entry
-router.get('/new',isLoggedIn, (req, res) => {
+router.get('/new',middleware.isLoggedIn, (req, res) => {
     res.render('pujas/new');
 });
 
@@ -67,7 +69,7 @@ router.get("/:id", (req,res)=> {
 });
 
 //EDIT PUJA ROUTE
-router.get("/:id/edit",checkPujaOwnership, (req, res)=> {
+router.get("/:id/edit",middleware.checkPujaOwnership, (req, res)=> {
 
     Puja.findById(req.params.id, (err, foundPuja)=> {
         res.render("pujas/edit", {puja : foundPuja});
@@ -89,7 +91,7 @@ router.put("/:id", (req,res)=> {
 });
 
 //DESTORY PUJA ROUTE  
-router.delete("/:id",checkPujaOwnership, (req,res)=> {
+router.delete("/:id", middleware.checkPujaOwnership, (req,res)=> {
     Puja.findByIdAndRemove(req.params.id, (err)=> {
         if(err) {
             res.redirect("/pujas");
@@ -99,35 +101,8 @@ router.delete("/:id",checkPujaOwnership, (req,res)=> {
     })
 });
 
-//middleware
-function isLoggedIn(req, res, next) {
-    if(req.isAuthenticated()) {
-        return next();
-    }
-    res.redirect("/login");
-}
 
-function checkPujaOwnership(req,res, next) {
 
-    //if user is logged in
-    if(req.isAuthenticated()) {
-        
-        Puja.findById(req.params.id, (err, foundPuja)=> {
-            if(err) {
-                res.redirect("back");
-            }else {
-                //does the user own the puja entry?
-                 if(foundPuja.author.id.equals(req.user._id)) {
-                    next();
-                 } else {
-                     res.redirect("back");
-                 }
-                
-            }
-        });
-    } else {
-        res.redirect("back");
-    }
-};
+
 
 module.exports = router;
