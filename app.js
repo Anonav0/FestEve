@@ -54,6 +54,8 @@ passport.deserializeUser(User.deserializeUser());
 //middleware for accessing current User to all routes
 app.use((req, res, next)=> {
     res.locals.currentUser = req.user;
+    res.locals.error = req.flash("error");
+    res.locals.success = req.flash("success");
     next();
 });
 

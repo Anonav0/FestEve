@@ -5,7 +5,7 @@
         <link  rel="stylesheet" href="/stylesheets/main.css">
     </head>
     <body>
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <nav style="margin-bottom: 15px;" class="navbar navbar-expand-sm navbar-dark bg-dark">
             <div class="container-fluid">
               <a class="navbar-brand" href="/">FestEve</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,3 +50,19 @@
               </div>
             </div>
           </nav>
+          <div class="container">
+
+            <% if(error && error.length > 0){ %>
+              <div class="alert alert-danger" role="alert">
+                <%= error %>
+              </div>
+            <% } %> 
+            <% if(success && success.length > 0){ %>
+              <div class="alert alert-success" role="alert">
+                <%= success %>
+              </div>
+            <% } %> 
+            
+          </div>
+          
+          
