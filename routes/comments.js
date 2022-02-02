@@ -54,13 +54,20 @@ router.post("/", middleware.isLoggedIn, (req, res) => {
 
 //COMMENTS EDIT ROUTE 
 router.get("/:comment_id/edit",middleware.checkCommentOwnership, (req, res)=> {
-    Comment.findById(req.params.comment_id, (err, foundComment)=> {
-        if(err) {
-            res.redirect("back");
-        } else {
-            res.render("comments/edit", {puja_id: req.params.id, comment: foundComment});
+    Puja.findById(req.params.id, (err, foundPuja) => {
+        if(err || !foundPuja) {
+            req.flash("error", "No Puja entry found!");
+            return res.redirect("back");
         }
-    });
+        Comment.findById(req.params.comment_id, (err, foundComment)=> {
+            if(err) {
+                res.redirect("back");
+            } else {
+                res.render("comments/edit", {puja_id: req.params.id, comment: foundComment});
+            }
+        });
+    })
+
     
 });
 

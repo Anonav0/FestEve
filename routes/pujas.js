@@ -57,7 +57,9 @@ router.get("/:id", (req,res)=> {
 
     //find the puja with provided Id and show to puja.
     Puja.findById(req.params.id).populate("comments").exec((err,foundPuja)=> {
-        if(err) {
+        if(err || !foundPuja) {
+            req.flash("error", "Puja entry not found! :(");
+            res.redirect("back");
             console.log(err);
         } else {
             console.log(foundPuja);

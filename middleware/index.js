@@ -10,7 +10,7 @@ middlewareObj.checkPujaOwnership = (req,res, next)=> {
     if(req.isAuthenticated()) {
         
         Puja.findById(req.params.id, (err, foundPuja)=> {
-            if(err) {
+            if(err || !foundPuja) {
                 req.flash("error", "Puja Entry not found! :(");
                 res.redirect("back");
             }else {
@@ -25,8 +25,10 @@ middlewareObj.checkPujaOwnership = (req,res, next)=> {
             }
         });
     } else {
+        console.log(req.session)
         req.flash("error", "You need to be logged in to do that!")
-        res.redirect("back");
+        
+        res.redirect('back');
     }
 };
 
@@ -36,7 +38,8 @@ middlewareObj.checkCommentOwnership = (req,res, next) => {
     if(req.isAuthenticated()) {
         
         Comment.findById(req.params.comment_id, (err, foundComment)=> {
-            if(err) {
+            if(err || !foundComment) {
+                req.flash("error", "Comment not found! :(");
                 res.redirect("back");
             }else {
                 //does user own the comment?
