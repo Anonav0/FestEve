@@ -1,13 +1,41 @@
 <%- include('./partials/header') -%> 
 
 
+<div class="container-fluid vh-100" style="margin-top:100px">
+    <div class="" style="margin-top:100px">
+        <div class="rounder d-flex justify-content-center">
+            <div class="col-md-4 col-sm-12 shadow-lg p-5 bg-light">
+                <div class="text-center">
+                    <h3 class="text-primary">Sign in</h3>
+                </div>
+                <form action="/login" method="post">
+                    <div class="p-4">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text bg-primary"><i
+                                class="bi bi-person-plus-fill text-white"></i></span>
+                            <input text="text" class="form-control" name="username" placeholder="Username">    
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text bg-primary"><i
+                                class="bi bi-person-plus-fill text-white"></i></span>
+                            <input type="password" name="password" class="form-control" placeholder="password">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary text-center mt-2" >
+                            Login
+                        </button>
+                        <p class="text-center mt-5">Don't have an account?
+                            <span class="text-primary">Sign Up</span>
+                        </p>
+                        <p class="text-center text-primary">Forgot your password?</p>
 
-<h1>Login in route</h1>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
-<form action="/login" method="POST" >
-    <input type="text" name="username" placeholder="username">
-    <input type="password" name="password" placeholder="password">
-    <button>Submit</button> 
-</form>
+
 
 <%- include('./partials/footer') -%> 

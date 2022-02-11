@@ -3,7 +3,6 @@ const express = require("express");
 const router = express.Router();
 
 const passport = require("passport");
-const user = require("../models/user");
 const User = require("../models/user");
 
 
@@ -15,7 +14,7 @@ router.get('/', (req, res) => {
 
 //show register form 
 router.get("/register", (req,res)=> {
-    res.render("register");
+    res.render("register", {page: 'register'});
 });
 
 //handle sign up logic
@@ -23,8 +22,8 @@ router.post("/register", (req, res)=> {
     const newUser = new User({username: req.body.username});
     User.register(newUser, req.body.password, (err, usr)=> {
         if(err) {
-            req.flash("error", err.message);
-            return res.redirect("/register");
+            console.log(err);
+            return res.render("register", {error: err.message});
         }
         passport.authenticate("local")(req, res, ()=> {
             req.flash("success", "Welcome to FestEve! "+ newUser.username);
@@ -36,7 +35,7 @@ router.post("/register", (req, res)=> {
 //login route
 //show login form
 router.get("/login", (req, res)=> {
-    res.render("login");
+    res.render("login",{page:'login'});
 });
 
 //handle login logic
