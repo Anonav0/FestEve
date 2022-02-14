@@ -13,7 +13,7 @@
                     <h4 class="card-title"><a><%= puja.name  %> </a></h4>
                     <p class="card-text"> <%= puja.description %></p>
                     <p class="opacity-50 card-text">
-                       <em>Submitted by : <%= puja.author.username %> </em> 
+                       <em>Submitted by : <%= puja.author.username %>, <%= moment(puja.createdAt).fromNow() %> </em> 
                     </p>
                     <% if(currentUser && puja.author.id.equals(currentUser._id)){ %> 
                         <a href="/pujas/<%= puja._id %>/edit" class="btn btn-warning">Edit</a>
@@ -43,9 +43,10 @@
                         </svg>
                         
                         <p class="pb-3 mb-0 small lh-sm border-bottom">
+                        
                             <strong class="d-block text-gray-dark ">@<%= comment.author.username %></strong>
-                            
                             <%= comment.text %>
+                            
 
                         </p>
                         <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
@@ -57,7 +58,10 @@
                                     <input type="submit" class="btn btn-danger btn-sm" value="Delete">
                                 </form>
                             </p>
-                        <% } %> 
+                        <% } %>
+
+                        
+                         
 
                         </div>
                         

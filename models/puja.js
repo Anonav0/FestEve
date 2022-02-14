@@ -8,6 +8,7 @@ const pujaSchema = new mongoose.Schema({
     loc: String,
     lat: mongoose.Schema.Types.Decimal128,
     lon : mongoose.Schema.Types.Decimal128,
+    createdAt : {type : Date, default: Date.now},
     author : {
         id: {
             type: mongoose.Schema.Types.ObjectId,
