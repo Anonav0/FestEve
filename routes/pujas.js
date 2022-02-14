@@ -27,19 +27,23 @@ router.post('/', middleware.isLoggedIn, (req,res) => {
     //get data from form and add to places array
     const name = req.body.name;
     const image = req.body.image;
+    const loc = req.body.loc;
+    const lat = req.body.lat;
+    const lon = req.body.lon;
     const desc = req.body.description;
     const author = {
         id: req.user._id,
         username: req.user.username
     }
-    const newPuja = {name: name, image : image, description : desc , author: author};
+    const newPuja = {name: name, image : image,loc: loc, lat: lat, lon: lon, description : desc , author: author};
     //Create a new Puja and save to DB
     Puja.create(newPuja, (err, Newpuja) =>  {
         if(err) {
+            req.flash("error", "Sorry! There was some problem :(")
             console.log(err);
         } else {
             //redirect back to places page
-            console.log(Newpuja)
+
             res.redirect('/pujas');
         }
     })
@@ -62,7 +66,7 @@ router.get("/:id", (req,res)=> {
             res.redirect("back");
             console.log(err);
         } else {
-            console.log(foundPuja);
+
             res.render("pujas/show", {puja: foundPuja});
         }
 
@@ -83,11 +87,14 @@ router.get("/:id/edit",middleware.checkPujaOwnership, (req, res)=> {
 //UPDATE PUJA ROUTE
 router.put("/:id", middleware.checkPujaOwnership, (req,res)=> {
     //find and update the correct puja
+    console.log(req.body.puja)
     Puja.findByIdAndUpdate(req.params.id, req.body.puja, (err, updatedPuja) => {
         if(err) {
+            console.log(err);
+            req.flash("error", "Sorry! There was some problem :(")
             res.redirect("/pujas");
         } else {
-            
+            req.flash("primary", "Puja entry successfully updated");
             res.redirect("/pujas/"+ req.params.id);
            
         }

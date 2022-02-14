@@ -5,6 +5,9 @@ const pujaSchema = new mongoose.Schema({
     name: String,
     image: String,
     description: String,
+    loc: String,
+    lat: mongoose.Schema.Types.Decimal128,
+    lon : mongoose.Schema.Types.Decimal128,
     author : {
         id: {
             type: mongoose.Schema.Types.ObjectId,

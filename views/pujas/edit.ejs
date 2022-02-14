@@ -8,12 +8,24 @@
             <form action="/pujas/<%= puja._id %>?_method=PUT" method="POST">
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input class="form-control" type="text" name="puja[name]" value="<%= puja.name %> ">
+                    <input class="form-control" type="text" name="puja[name]" value="<%= puja.name %>">
                     <small id="nameHelp" class="form-text text-muted">This is really very important.</small>
                 </div>
                 <div class="form-group">
                     <label for="image">Image url</label>
-                    <input class="form-control" type="text" name="puja[image]" value="<%= puja.image %> ">
+                    <input class="form-control" type="text" name="puja[image]" value="<%= puja.image %>">
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input class="form-control" type="text" name="puja[loc]"  value="<%= puja.loc %>">
+                </div>
+                <div class="form-group">
+                    <label for="latitude">Latitude</label>
+                    <input class="form-control" type="text" name="puja[lat]"  value="<%= puja.lat %>"> 
+                </div>
+                <div class="form-group">
+                    <label for="longitude">Longitude</label>
+                    <input class="form-control" type="text" name="puja[lon]"  value="<%= puja.lon %>">
                 </div>
                 <div class="form-group">
                     <label for="description">Description</label>
