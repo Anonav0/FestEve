@@ -31,6 +31,8 @@ const req = require("express/lib/request");
 
 
 mongoose.connect("mongodb://localhost/FestEve");
+require('dotenv').config()
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));

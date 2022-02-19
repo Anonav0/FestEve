@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const pujaSchema = new mongoose.Schema({
     name: String,
     image: String,
+    imageId: String,
     description: String,
     loc: String,
     lat: mongoose.Schema.Types.Decimal128,

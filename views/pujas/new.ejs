@@ -4,31 +4,31 @@
     <h1 style="text-align: center;">Create a new Puja Pandal</h1>
 
     <div style="width: 30%; margin: 25px auto;">
-        <form action="/pujas" method="POST">
+        <form action="/pujas" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">Name</label>
-                <input class="form-control" type="text" name="name" placeholder="name">
+                <input class="form-control" type="text" name="puja[name]" placeholder="name">
                 <small id="nameHelp" class="form-text text-muted">This is really very important.</small>
             </div>
             <div class="form-group">
-                <label for="image">Image url</label>
-                <input class="form-control" type="text" name="image" placeholder="image url">
+                <label for="image">Image </label>
+                <input class="form-control" type="file" id="image" name="image" accept="image/*" required>
             </div>
             <div class="form-group">
-                <label for="image">Address</label>
-                <input class="form-control" type="text" name="loc" placeholder="ex. shreebhumi">
+                <label for="adress">Address</label>
+                <input class="form-control" type="text" name="puja[loc]" placeholder="ex. shreebhumi">
             </div>
             <div class="form-group">
-                <label for="image">Latitude</label>
-                <input class="form-control" type="text" name="lat" placeholder="Latitude">
+                <label for="latitude">Latitude</label>
+                <input class="form-control" type="text" name="puja[lat]" placeholder="Latitude">
             </div>
             <div class="form-group">
-                <label for="image">Longitude</label>
-                <input class="form-control" type="text" name="lon" placeholder="Longitude">
+                <label for="Longitude">Longitude</label>
+                <input class="form-control" type="text" name="puja[lon]" placeholder="Longitude">
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <input class="form-control" type="text" name="description" placeholder="Description">
+                <input class="form-control" type="text" name="puja[description]" placeholder="Description">
             </div>
             <button type="submit" class="btn btn-primary btn-block">Submit!</button>
         </form>  
