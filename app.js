@@ -17,8 +17,6 @@ const LocalStrategy     = require("passport-local");
 
 //Integrating mongoDB
 const mongoose   = require("mongoose");
-const Puja       = require("./models/puja");
-const Comment    = require("./models/comment");
 // User model
 const User       = require("./models/user");
 
@@ -29,8 +27,8 @@ const pujasRoutes   = require("./routes/pujas");
 const indexRoutes    = require("./routes/index");
 const req = require("express/lib/request");
 
-
-mongoose.connect("mongodb://localhost/FestEve");
+const url = "mongodb+srv://swarnavo:1iDJnz6SRnFXNFTC@cluster0.cg6jj.mongodb.net/FestEveCloud?retryWrites=true&w=majority"
+mongoose.connect(url, {useNewUrlParser: true});
 require('dotenv').config()
 
 app.use(bodyParser.urlencoded({extended: true}));

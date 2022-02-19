@@ -91,7 +91,6 @@ router.get("/:id", (req,res)=> {
             res.redirect("back");
             console.log(err);
         } else {
-            console.log("[SHOW PAGE]",[foundPuja.image, foundPuja.imageId]);
             res.render("pujas/show", {puja: foundPuja});
         }
 
