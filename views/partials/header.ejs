@@ -5,14 +5,18 @@
         <link  rel="stylesheet" href="/stylesheets/main.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="apple-touch-icon" href="/docs/5.1/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+
         
         <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
         <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
+        <!-- //icons  -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     </head>
-    <body>
+    <body class="d-flex flex-column min-vh-100">
         <nav style="margin-bottom: 15px;" class="navbar navbar-expand-sm navbar-dark bg-dark">
             <div class="container-fluid">
-              <a class="navbar-brand" href="/">FestEve</a>
+              <a class="navbar-brand" href="/"><i class="bi bi-balloon-fill"></i><i class="bi bi-bookmark-star-fill"></i> FestEve!</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -20,22 +24,22 @@
               <div class="collapse navbar-collapse" id="navbarsExample03">
                 <ul class="navbar-nav me-auto mb-2 mb-sm-0">
                   <li class="nav-item">
-                    <a class="nav-link <%= typeof page !== 'undefined' && page === 'pujas' ? 'active' : '' %>" aria-current="page" href="/pujas">Home</a>
+                    <a class="nav-link <%= typeof page !== 'undefined' && page === 'pujas' ? 'active' : '' %>" aria-current="page" href="/pujas"><i class="bi bi-house-door-fill"></i> Home</a>
                   </li>
 
                   <% if(!currentUser) { %>
                     <li class="nav-item ">
-                      <a class="nav-link <%= typeof page !== 'undefined' && page === 'register' ? 'active' : '' %>" href="/register">Sign up</a>
+                      <a class="nav-link <%= typeof page !== 'undefined' && page === 'register' ? 'active' : '' %>" href="/register"><i class="bi bi-person-bounding-box"></i> Sign up</a>
                     </li>
                     <li class="nav-item ">
-                      <a class="nav-link <%= typeof page !== 'undefined' && page === 'login' ? 'active' : '' %> " href="/login">Sign in</a>
+                      <a class="nav-link <%= typeof page !== 'undefined' && page === 'login' ? 'active' : '' %> " href="/login"><i class="bi bi-person-check-fill"></i> Sign in</a>
                     </li>
                   <% } else { %>
                     <li class="nav-item">
-                      <a class="nav-link" href="/">Signed in as <%= currentUser.username %> </a>
+                      <a class="nav-link" href="/"><i class="bi bi-person-circle"></i> Signed in as <%= currentUser.username %> </a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link " href="/logout">Sign out</a>
+                      <a class="nav-link " href="/logout"><i class="bi bi-box-arrow-left"></i> Sign out</a>
                     </li>
                  <% } %> 
 

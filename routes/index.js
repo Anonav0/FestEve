@@ -43,7 +43,9 @@ router.get("/login", (req, res)=> {
 router.post("/login", passport.authenticate("local", {
     successRedirect : "/pujas",
     failureRedirect: "/login"
-}), (req, res)=> {});
+}), (req, res)=> {
+    req.flash("success", "Welcome Back!");
+});
 
 
 //logout route
