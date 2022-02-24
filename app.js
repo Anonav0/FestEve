@@ -10,6 +10,7 @@ const seedDB            = require("./seeds");
 const passport          = require("passport");
 const LocalStrategy     = require("passport-local"); 
 
+
 //seed the database
 // seedDB();
 
@@ -39,11 +40,26 @@ app.use(flash());
 app.locals.moment = require('moment');
 
 //PASSPORT CONFIGURATION
-app.use(require("express-session")({
-    secret: "FestEve is gonna blowup!",
+const session = require('express-session')
+const MemoryStore = require('memorystore')(session)
+
+app.use(session({
+    cookie: { maxAge: 86400000 },
+    store: new MemoryStore({
+      checkPeriod: 86400000 // prune expired entries every 24h
+    }),
     resave: false,
-    saveUninitialized: false
-}));
+    secret: 'keyboard cat'
+}))
+// app.use(require("express-session")({
+//     cookie: { maxAge: 86400000 },
+//     store: new MemoryStore({
+//       checkPeriod: 86400000 // prune expired entries every 24h
+//     }),
+//     secret: "FestEve is gonna blowup!",
+//     resave: false,
+//     saveUninitialized: false
+// }));
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -68,6 +84,6 @@ app.use("/pujas/:id/comments/", commentRoutes);
 
 
 
-app.listen(process.env.PORT || 3000, function(){
+app.listen(process.env.PORT || 8080, function(){
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
   });
